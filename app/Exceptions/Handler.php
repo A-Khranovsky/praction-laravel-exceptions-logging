@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 use UnexpectedValueException;
 
 
@@ -47,9 +48,5 @@ class Handler extends ExceptionHandler
         $this->renderable(function (UnexpectedValueException $e) {
             return response()->view('errors.404', [], 404);
         });
-
-//        $this->reportable(function (Throwable $e) {
-//
-//        });
     }
 }

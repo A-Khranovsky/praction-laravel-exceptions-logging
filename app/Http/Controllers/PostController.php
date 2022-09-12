@@ -11,12 +11,6 @@ class PostController extends Controller
     {
         $next = $id + 1;
         $prev = $id - 1;
-//        if ($prev <= 0) {
-//            $prev = 1;
-//        }
-//        if ($next > 10) {
-//            $next = 10;
-//        }
         if (isset($_GET['edit'])) {
             return view('edit', [
                 'post' => Post::find($_GET['edit'])]);
