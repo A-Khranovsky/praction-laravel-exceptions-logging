@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -36,5 +37,11 @@ class PostController extends Controller
         $post->content = $request->post_content;
         $post->save();
         return redirect(url("post/{$id}"));
+    }
+
+    public function tmp()
+    {
+        Log::alert('Out of range');
+        return redirect()->back();
     }
 }
