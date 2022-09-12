@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use ErrorException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Facades\Log;
 
 
 class Handler extends ExceptionHandler
@@ -44,9 +45,9 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-//        $this->reportable(function (UnexpectedValueException $e){
-//            Log::alert('Out of range');
-//        });
+        $this->reportable(function(ErrorException $e){
+            Log::warning($e->getMessage());
+        })->stop();
         $this->renderable(function (ErrorException $e) {
             return response()->view('errors.404', [], 404);
         });
