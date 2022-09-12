@@ -3,7 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Throwable;
+use UnexpectedValueException;
+
 
 class Handler extends ExceptionHandler
 {
@@ -43,8 +44,12 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
+        $this->renderable(function (UnexpectedValueException $e) {
+            return response()->view('errors.404', [], 404);
         });
+
+//        $this->reportable(function (Throwable $e) {
+//
+//        });
     }
 }
