@@ -45,11 +45,15 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function(ErrorException $e){
+        $this->reportable(function(ErrorException $e){ // logging to laravel.log
             Log::warning($e->getMessage());
         })->stop();
-        $this->renderable(function (ErrorException $e) {
-            return response()->view('errors.404', [], 404);
+
+        $this->renderable(function (ErrorException $e) { // rendering the page with message
+            return response()->view('errors.404',
+                [
+                    'message' => $e->getMessage()
+                ], 404);
         });
     }
 }
