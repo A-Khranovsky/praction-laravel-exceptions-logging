@@ -45,15 +45,15 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        // logging to laravel.log all exceptions
-//        $this->reportable(function (ErrorException $e) {
-//            Log::warning($e->getMessage());
-//        })->stop();
-
         // rendering the page with message
         $this->renderable(function (ErrorException $e) {
             throw new MyNotFoundException();
         });
+
+        // logging to laravel.log all exceptions
+//        $this->reportable(function (Exception $e) {
+//            Log::warning($e->getMessage());
+//        })->stop();
 
         $this->renderable(function (Exception $e) {
             switch ($e->getCode()) {
