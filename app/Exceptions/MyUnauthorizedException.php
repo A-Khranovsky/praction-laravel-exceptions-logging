@@ -10,4 +10,15 @@ class MyUnauthorizedException extends \Exception
     {
         return ['MyContext' => 'Unauthorezed user'];
     }
+
+    public function render($request)
+    {
+        return response()->view(
+            'errors.401',
+            [
+                'message' => $this->getMessage()
+            ],
+            401
+        );
+    }
 }

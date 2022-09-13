@@ -17,4 +17,15 @@ class MyNotFoundException extends \Exception
     {
         parent::__construct($message, $code, $previous);
     }
+
+    public function render($request)
+    {
+        return response()->view(
+            'errors.404',
+            [
+                'message' => $this->getMessage()
+            ],
+            404
+        );
+    }
 }

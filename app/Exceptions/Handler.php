@@ -54,36 +54,5 @@ class Handler extends ExceptionHandler
 //        $this->reportable(function (Exception $e) {
 //            Log::warning($e->getMessage());
 //        })->stop();
-
-        $this->renderable(function (Exception $e) {
-            switch ($e->getCode()) {
-                case 401:
-                    return response()->view(
-                        'errors.401',
-                        [
-                            'message' => $e->getMessage()
-                        ],
-                        401
-                    );
-                case 403:
-                    return response()->view(
-                        'errors.403',
-                        [
-                            'message' => $e->getMessage()
-                        ],
-                        403
-                    );
-                case 404:
-                    return response()->view(
-                        'errors.404',
-                        [
-                            'message' => $e->getMessage()
-                        ],
-                        404
-                    );
-                default:
-                    break;
-            }
-        });
     }
 }

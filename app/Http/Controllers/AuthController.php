@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\MyForbiddenException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +21,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('home');
         } else {
-            throw new \Exception('User not found or wrong credentials.', 403);
+            throw new MyForbiddenException('User not found or wrong credentials.', 403);
         }
     }
 
