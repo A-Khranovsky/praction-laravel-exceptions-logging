@@ -1,5 +1,5 @@
 ## Vocation
-Praction with Laravel's exception handling with rendering error pages, logging exceptions
+Praction with Laravel's exception handling with rendering error pages(from existed views), logging exceptions
 logging login, logout events.
 
 ## Description
