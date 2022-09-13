@@ -1,6 +1,6 @@
 ## Vocation
 Praction with Laravel's exception handling with rendering error pages(from existed views), logging exceptions
-logging login, logout events.
+logging login, logout events, middleware.
 
 ## Description
 In project is handled exceptions in this cases:
