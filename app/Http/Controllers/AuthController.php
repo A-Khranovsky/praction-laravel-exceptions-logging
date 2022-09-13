@@ -22,7 +22,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('home');
         } else {
-            throw new \Exception('User not found or wrong credentials.', 401);
+            throw new \Exception('User not found or wrong credentials.', 403);
         }
     }
 

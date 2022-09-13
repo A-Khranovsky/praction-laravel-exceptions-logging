@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <title>Unathorized</title>
+    <title>Forbidden</title>
     <meta charset="utf-8">
 </head>
 <body>
-<h3>401 | UNAUTHORIZED</h3>
+<h3>403 | FORBIDDEN</h3>
 <div>{{$message ?? ''}}</div><br />
-<a href="{{route('auth')}}">Login</a>
+<a href="{{url()->previous()}}">Back</a>
 </body>
 </html>

@@ -19,5 +19,5 @@ Route::get('/', [AuthController::class, 'auth'])->name('auth');
 Route::post('/login', [AuthController::class, 'login'])->name('auth.login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 
-Route::get('/home', [PostController::class, 'home'])->name('home')->middleware('auth');
-Route::get('/post/{id}', [PostController::class, 'index'])->name('post.show')->middleware('auth');
+Route::get('/home', [PostController::class, 'home'])->name('home')->middleware('check_auth');
+Route::get('/post/{id}', [PostController::class, 'index'])->name('post.show')->middleware('check_auth');

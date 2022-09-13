@@ -58,6 +58,15 @@ class Handler extends ExceptionHandler
         });
 
         $this->renderable(function (Exception $e) {
+            if($e->getCode() == 403){
+                return response()->view('errors.403',
+                    [
+                        'message' => $e->getMessage()
+                    ], 403);
+            }
+        });
+
+        $this->renderable(function (Exception $e) {
             if($e->getCode() == 401){
                 return response()->view('errors.401',
                     [
