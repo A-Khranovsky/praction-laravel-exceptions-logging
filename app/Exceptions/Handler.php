@@ -7,7 +7,6 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
 
-
 class Handler extends ExceptionHandler
 {
     /**
@@ -46,32 +45,43 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function(ErrorException $e){ // logging to laravel.log all exceptions
+        $this->reportable(function (ErrorException $e) {
+ // logging to laravel.log all exceptions
             Log::warning($e->getMessage());
         })->stop();
 
-        $this->renderable(function (ErrorException $e) { // rendering the page with message
-            return response()->view('errors.404',
+        $this->renderable(function (ErrorException $e) {
+ // rendering the page with message
+            return response()->view(
+                'errors.404',
                 [
                     'message' => $e->getMessage()
-                ], 404);
+                ],
+                404
+            );
         });
 
         $this->renderable(function (Exception $e) {
-            if($e->getCode() == 403){
-                return response()->view('errors.403',
+            if ($e->getCode() == 403) {
+                return response()->view(
+                    'errors.403',
                     [
                         'message' => $e->getMessage()
-                    ], 403);
+                    ],
+                    403
+                );
             }
         });
 
         $this->renderable(function (Exception $e) {
-            if($e->getCode() == 401){
-                return response()->view('errors.401',
+            if ($e->getCode() == 401) {
+                return response()->view(
+                    'errors.401',
                     [
                         'message' => $e->getMessage()
-                    ], 401);
+                    ],
+                    401
+                );
             }
         });
     }

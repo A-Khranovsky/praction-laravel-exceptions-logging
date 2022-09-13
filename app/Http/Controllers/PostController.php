@@ -21,7 +21,6 @@ class PostController extends Controller
             'next' => $next,
             'prev' => $prev
         ]);
-
     }
 
     public function home()

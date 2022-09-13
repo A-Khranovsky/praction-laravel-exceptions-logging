@@ -17,7 +17,7 @@ class CheckAuth
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!Auth::check()){
+        if (!Auth::check()) {
             throw new \Exception('Denied for not authorized user.', 401);
         }
         return $next($request);
