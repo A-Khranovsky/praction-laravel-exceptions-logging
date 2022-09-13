@@ -11,6 +11,11 @@ class MyUnauthorizedException extends \Exception
         return ['MyContext' => 'Unauthorezed user'];
     }
 
+    public function report()
+    {
+        return false; // if true will not be logging
+    }
+
     public function render($request)
     {
         return response()->view(
