@@ -28,20 +28,4 @@ class PostController extends Controller
     {
         return view('home', ['posts' => Post::all()]);
     }
-
-
-
-    public function edit(Request $request, $id)
-    {
-        $post = Post::find($id);
-        $post->content = $request->post_content;
-        $post->save();
-        return redirect(url("post/{$id}"));
-    }
-
-    public function tmp()
-    {
-        Log::alert('Out of range');
-        return redirect()->back();
-    }
 }
