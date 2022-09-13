@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use ErrorException;
+use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\Log;
 
@@ -54,6 +55,15 @@ class Handler extends ExceptionHandler
                 [
                     'message' => $e->getMessage()
                 ], 404);
+        });
+
+        $this->renderable(function (Exception $e) {
+            if($e->getCode() == 401){
+                return response()->view('errors.401',
+                    [
+                        'message' => $e->getMessage()
+                    ], 401);
+            }
         });
     }
 }
