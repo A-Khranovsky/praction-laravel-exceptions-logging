@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Exceptions\MyUnauthorizedException;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,7 @@ class CheckAuth
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::check()) {
-            throw new \Exception('Denied for not authorized user.', 401);
+            throw new MyUnauthorizedException('Denied for not authorized user.', 401);
         }
         return $next($request);
     }

@@ -45,43 +45,44 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (ErrorException $e) {
- // logging to laravel.log all exceptions
-            Log::warning($e->getMessage());
-        })->stop();
+        // logging to laravel.log all exceptions
+//        $this->reportable(function (ErrorException $e) {
+//            Log::warning($e->getMessage());
+//        })->stop();
 
+        // rendering the page with message
         $this->renderable(function (ErrorException $e) {
- // rendering the page with message
-            return response()->view(
-                'errors.404',
-                [
-                    'message' => $e->getMessage()
-                ],
-                404
-            );
+            throw new MyNotFoundException();
         });
 
         $this->renderable(function (Exception $e) {
-            if ($e->getCode() == 403) {
-                return response()->view(
-                    'errors.403',
-                    [
-                        'message' => $e->getMessage()
-                    ],
-                    403
-                );
-            }
-        });
-
-        $this->renderable(function (Exception $e) {
-            if ($e->getCode() == 401) {
-                return response()->view(
-                    'errors.401',
-                    [
-                        'message' => $e->getMessage()
-                    ],
-                    401
-                );
+            switch ($e->getCode()) {
+                case 401:
+                    return response()->view(
+                        'errors.401',
+                        [
+                            'message' => $e->getMessage()
+                        ],
+                        401
+                    );
+                case 403:
+                    return response()->view(
+                        'errors.403',
+                        [
+                            'message' => $e->getMessage()
+                        ],
+                        403
+                    );
+                case 404:
+                    return response()->view(
+                        'errors.404',
+                        [
+                            'message' => $e->getMessage()
+                        ],
+                        404
+                    );
+                default:
+                    break;
             }
         });
     }
