@@ -46,7 +46,7 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function(ErrorException $e){ // logging to laravel.log
+        $this->reportable(function(ErrorException $e){ // logging to laravel.log all exceptions
             Log::warning($e->getMessage());
         })->stop();
 
