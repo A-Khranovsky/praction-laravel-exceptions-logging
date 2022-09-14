@@ -19,6 +19,7 @@ settings, which has set to log in stack(as default).
 * clone the repository
 * ```docker-compose up -d```
 * ```docker exec -it 51_php-apache_1 bash```
+* ```cp .env.example .env``` 
 * ```php artisan migrate:fresh --seed```
 * open http://localhost
 * input credentials: email is johns.audra@example.net, password is password
